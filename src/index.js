@@ -2,8 +2,8 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-import App from "./App";
 import LinkInput from "./LinkInput";
+import TopBar from "./TopBar";
 import styles from "./styles.js";
 
 import {
@@ -67,13 +67,13 @@ function Links({ onLinkSelected }) {
   );
 }
 
-const FullApp = () => {
+const App = () => {
   const classes = useStyles();
   return (
     <ApolloProvider client={client}>
       <StrictMode>
         <div className={classes.container}>
-          <App />
+          <TopBar />
           <LinkInput />
           <Links />
         </div>
@@ -83,4 +83,4 @@ const FullApp = () => {
 };
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<FullApp />, rootElement);
+ReactDOM.render(<App />, rootElement);
