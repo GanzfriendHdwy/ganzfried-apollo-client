@@ -46,13 +46,18 @@ function Links({ onLinkSelected }) {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <select name="Link" onChange={onLinkSelected}>
-      {data.Links?.map((Link) => (
-        <option key={Link.url} value={Link.slug}>
-          {Link.url}
-        </option>
-      ))}
-    </select>
+    <div>
+      {data.links.length ? (
+        data.links.map(({ url, slug }) => (
+          <div>
+            <p>{url}</p>
+            <p>{slug}</p>
+          </div>
+        ))
+      ) : (
+        <div>No links have been shortened yet</div>
+      )}
+    </div>
   );
 }
 

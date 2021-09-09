@@ -28,6 +28,9 @@ const LinkInput = () => {
   const [url, setUrl] = useState("");
   const [slug, setSlug] = useState("");
 
+  if (loading) return "Submitting...";
+  if (error) return `Submission error! ${error.message}`;
+
   const handleSubmit = () => {
     addLink({ variables: { url, slug } });
     setUrl("");
@@ -43,7 +46,7 @@ const LinkInput = () => {
           label="Url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          helperText="ex. https://example.com"
+          helperText="Make your links shorter"
         />
       </div>
       <div>
@@ -53,12 +56,12 @@ const LinkInput = () => {
           label="Slug"
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
-          helperText="ex. abc123"
+          helperText="Custom slug"
         />
       </div>
       <div>
         <button onSubmit={handleSubmit} type="submit">
-          Add Link
+          Shorten URL
         </button>
       </div>
     </div>
