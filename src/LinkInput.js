@@ -31,8 +31,8 @@ const LinkInput = () => {
   if (loading) return "Submitting...";
   if (error) return `Submission error! ${error.message}`;
 
-  const handleSubmit = () => {
-    addLink({ variables: { url, slug } });
+  const handleSubmit = async () => {
+    await addLink({ variables: { url, slug } });
     setUrl("");
     setSlug("");
   };

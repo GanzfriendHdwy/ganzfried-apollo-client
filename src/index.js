@@ -1,8 +1,10 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
 import App from "./App";
 import LinkInput from "./LinkInput";
+import styles from "./styles.js";
 
 import {
   ApolloClient,
@@ -16,6 +18,8 @@ const client = new ApolloClient({
   uri: "https://yhhb0.sse.codesandbox.io/",
   cache: new InMemoryCache()
 });
+
+const useStyles = makeStyles(styles);
 
 // client
 //   .query({
@@ -35,6 +39,7 @@ const GET_LINKS = gql`
     links {
       url
       slug
+      modifiedUrl
     }
   }
 `;
@@ -48,10 +53,11 @@ function Links({ onLinkSelected }) {
   return (
     <div>
       {data.links.length ? (
-        data.links.map(({ url, slug }) => (
+        data.links.map(({ url, slug, modifiedUrl }) => (
           <div>
-            <p>{url}</p>
-            <p>{slug}</p>
+            <p>Original: {url}</p>
+            {/* <p>{slug}</p> */}
+            <p>Modified: {modifiedUrl}</p>
           </div>
         ))
       ) : (
@@ -61,16 +67,20 @@ function Links({ onLinkSelected }) {
   );
 }
 
+const FullApp = () => {
+  const classes = useStyles();
+  return (
+    <ApolloProvider client={client}>
+      <StrictMode>
+        <div className={classes.container}>
+          <App />
+          <LinkInput />
+          <Links />
+        </div>
+      </StrictMode>
+    </ApolloProvider>
+  );
+};
+
 const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <StrictMode>
-      <div>
-        <App />
-        <LinkInput />
-        <Links />
-      </div>
-    </StrictMode>
-  </ApolloProvider>,
-  rootElement
-);
+ReactDOM.render(<FullApp />, rootElement);
