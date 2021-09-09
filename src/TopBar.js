@@ -7,7 +7,10 @@ const { logo, icons, headshot } = images;
 
 const useStyles = makeStyles(({ spacing }) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   toolBar: {
     display: "flex",
