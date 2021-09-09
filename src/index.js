@@ -2,13 +2,13 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 
 import App from "./App";
+import LinkInput from "./LinkInput";
 
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   useQuery,
-  useMutation,
   gql
 } from "@apollo/client";
 
@@ -39,44 +39,6 @@ const GET_LINKS = gql`
   }
 `;
 
-const CREATE_LINK = gql`
-  mutation CreateLink($url: String!, $slug: String!) {
-    createLink(url: $url, slug: $slug) {
-      url
-      slug
-    }
-  }
-`;
-
-function AddLink() {
-  let input;
-  const [addLink, { data, loading, error }] = useMutation(CREATE_LINK);
-
-  if (loading) return "Submitting...";
-  if (error) return `Submission error! ${error.message}`;
-
-  return (
-    <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          addLink({ variables: { url: input.value, slug: input.slug } });
-          input.value =
-            "https://codesandbox.io/s/zealous-bird-3bytl?file=/src/index.js";
-          input.slug = "abc123";
-        }}
-      >
-        <input
-          ref={(node) => {
-            input = node;
-          }}
-        />
-        <button type="submit">Add Link</button>
-      </form>
-    </div>
-  );
-}
-
 function Links({ onLinkSelected }) {
   const { loading, error, data } = useQuery(GET_LINKS);
 
@@ -85,7 +47,7 @@ function Links({ onLinkSelected }) {
 
   return (
     <select name="Link" onChange={onLinkSelected}>
-      {data.Links.map((Link) => (
+      {data.Links?.map((Link) => (
         <option key={Link.url} value={Link.slug}>
           {Link.url}
         </option>
@@ -100,8 +62,8 @@ ReactDOM.render(
     <StrictMode>
       <div>
         <App />
+        <LinkInput />
         <Links />
-        <AddLink />
       </div>
     </StrictMode>
   </ApolloProvider>,
