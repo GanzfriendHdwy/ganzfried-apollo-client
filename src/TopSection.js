@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { AppBar, Toolbar, Typography, Button, Box } from "@material-ui/core";
 
 import images from "../images";
-const { logo, icons, headshot } = images;
+const { logo, headshot } = images;
 
 const useStyles = makeStyles(({ spacing, breakpoints }) => ({
-  root: {
+  topSection: {
     flexGrow: 1,
     display: "flex",
     flexDirection: "column",
@@ -15,30 +15,17 @@ const useStyles = makeStyles(({ spacing, breakpoints }) => ({
   toolBar: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "space-between",
-    margin: spacing(2)
-  },
-  menuButton: {
-    marginRight: spacing(2)
+    justifyContent: "space-between"
   },
   tabs: {
     flexGrow: 1,
     color: "gray",
-    margin: spacing(3)
+    margin: spacing(1.5)
   },
   logoBox: {
     backgroundImage: `url(${logo})`,
     height: "6vh",
     width: "12vw",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundSize: "contain"
-  },
-  iconsBox: {
-    backgroundImage: `url(${icons})`,
-    height: "15vh",
-    width: "90vw",
-    margin: spacing(2),
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundSize: "contain"
@@ -73,11 +60,11 @@ const useStyles = makeStyles(({ spacing, breakpoints }) => ({
   }
 }));
 
-export default function TopBar() {
+export default function TopSection() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <div className={classes.topSection}>
       <AppBar color="inherit" position="static">
         <Toolbar className={classes.toolBar}>
           <Box className={classes.logoBox} />
@@ -86,13 +73,18 @@ export default function TopBar() {
               Features
             </Typography>
             <Typography variant="caption" className={classes.tabs}>
+              Domains
+            </Typography>
+            <Typography variant="caption" className={classes.tabs}>
               Pricing
+            </Typography>
+            <Typography variant="caption" className={classes.tabs}>
+              Enterprise
             </Typography>
           </Box>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Box className={classes.iconsBox} />
       <div className={classes.detailsBox}>
         <Box className={classes.leftSideDetailsBox}>
           <Typography variant="h4">Your Brand on Your Links</Typography>

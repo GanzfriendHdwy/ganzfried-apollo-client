@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
 import LinkInput from "./LinkInput";
-import TopBar from "./TopBar";
+import TopSection from "./TopSection";
+import Footer from "./Footer";
 import styles from "./styles.js";
 
 import {
@@ -73,9 +74,10 @@ const App = () => {
     <ApolloProvider client={client}>
       <StrictMode>
         <div className={classes.container}>
-          <TopBar />
+          <TopSection />
           <LinkInput />
           <Links />
+          <Footer />
         </div>
       </StrictMode>
     </ApolloProvider>
