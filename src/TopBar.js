@@ -5,7 +5,7 @@ import { AppBar, Toolbar, Typography, Button, Box } from "@material-ui/core";
 import images from "../images";
 const { logo, icons, headshot } = images;
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ spacing, breakpoints }) => ({
   root: {
     flexGrow: 1,
     display: "flex",
@@ -41,10 +41,17 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
   headshotBox: {
     backgroundImage: `url(${headshot})`,
-    height: "60vh",
-    width: "60vw",
+    [breakpoints.up("md")]: {
+      height: "70vh",
+      width: "70vw"
+    },
+    // height: `${spacing(20)}px`,
+    height: "40vh",
+    width: "40vw",
     margin: spacing(2),
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "contain"
   },
   detailsBox: {
     display: "flex",
@@ -85,7 +92,7 @@ export default function TopBar() {
       <div className={classes.detailsBox}>
         <Box className={classes.leftSideDetailsBox}>
           <Typography variant="h4">Your Brand on Your Links</Typography>
-          <Typography gutterBottom variant="caption">
+          <Typography gutterBottom variant="subtitle2">
             Rebrandly is the industry-leading link management platform to brand,
             track, and share short URLs using a custom domain name
           </Typography>
