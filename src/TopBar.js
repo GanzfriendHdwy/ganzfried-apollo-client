@@ -28,8 +28,8 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
   logoBox: {
     backgroundImage: `url(${logo})`,
-    height: "7vh",
-    width: "18vw",
+    height: "5vh",
+    width: "15vw",
     backgroundRepeat: "no-repeat"
   },
   iconsBox: {
@@ -41,10 +41,24 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
   headshotBox: {
     backgroundImage: `url(${headshot})`,
-    height: "80vh",
-    width: "90vw",
+    height: "60vh",
+    width: "60vw",
     margin: spacing(2),
     backgroundRepeat: "no-repeat"
+  },
+  detailsBox: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-around"
+  },
+  leftSideDetailsBox: {
+    display: "flex",
+    flexDirection: "column",
+    gap: spacing(2)
+  },
+  btnBox: {
+    display: "flex",
+    gap: spacing(2)
   }
 }));
 
@@ -55,14 +69,6 @@ export default function TopBar() {
     <div className={classes.root}>
       <AppBar color="inherit" position="static">
         <Toolbar className={classes.toolBar}>
-          {/* <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton> */}
           <Box className={classes.logoBox} />
           <Box>
             <Typography variant="caption" className={classes.tabs}>
@@ -76,7 +82,24 @@ export default function TopBar() {
         </Toolbar>
       </AppBar>
       <Box className={classes.iconsBox} />
-      <Box className={classes.headshotBox} />
+      <div className={classes.detailsBox}>
+        <Box className={classes.leftSideDetailsBox}>
+          <Typography variant="h4">Your Brand on Your Links</Typography>
+          <Typography gutterBottom variant="caption">
+            Rebrandly is the industry-leading link management platform to brand,
+            track, and share short URLs using a custom domain name
+          </Typography>
+          <Box className={classes.btnBox}>
+            <Button variant="contained" color="primary">
+              Sign up free
+            </Button>
+            <Button variant="outlined" color="primary">
+              Request a demo
+            </Button>
+          </Box>
+        </Box>
+        <Box className={classes.headshotBox} />
+      </div>
     </div>
   );
 }

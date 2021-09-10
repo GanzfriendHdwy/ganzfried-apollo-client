@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useMutation, gql } from "@apollo/client";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ spacing, palette }) => ({
   root: {
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      margin: spacing(1),
       width: 200
     },
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: theme.spacing(8)
+    marginBottom: spacing(8),
+    backgroundColor: palette.secondary
   }
 }));
 
@@ -35,12 +36,15 @@ const LinkInput = () => {
   if (loading) return "Submitting...";
   if (error) return `Submission error! ${error.message}`;
 
-  const handleSubmit = async () => {
-    await addLink({ variables: { url, slug } });
-    setUrl("");
-    setSlug("");
+  const handleSubmit = () => {
+    addLink({ variables: { url, slug } });
+    // setUrl("");
+    // setSlug("");
+    console.log("submit triggered");
   };
 
+  console.log(url);
+  console.log(slug);
   return (
     <div className={classes.root}>
       <div>
@@ -64,9 +68,9 @@ const LinkInput = () => {
         />
       </div>
       <div>
-        <button onSubmit={handleSubmit} type="submit">
+        <Button onClick={handleSubmit} type="submit">
           Shorten URL
-        </button>
+        </Button>
       </div>
     </div>
   );
