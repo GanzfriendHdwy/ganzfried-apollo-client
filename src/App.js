@@ -16,6 +16,19 @@ const client = new ApolloClient({
 
 const useStyles = makeStyles(styles);
 
+/* TODO: 
+    move all styling over to styles.js 
+    add more breakpoints
+    fix createLink issue
+    style display of links list
+    style links input (background color, etc)
+    style footer
+    make links clickable and direct to original url
+    build out footer
+    
+    make clipboard button to copy link url
+*/
+
 // client
 //   .query({
 //     query: gql`
