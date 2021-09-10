@@ -19,13 +19,24 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
 }));
 
 const CREATE_LINK = gql`
-  mutation CreateLink($url: String!, $slug: String!) {
+  mutation {
     createLink(url: $url, slug: $slug) {
       url
       slug
+      modifiedUrl
     }
   }
 `;
+
+// const CREATE_LINK = gql`
+//   mutation CreateLink($url: String!, $slug: String!) {
+//     createLink(url: $url, slug: $slug) {
+//       url
+//       slug
+//       modifiedUrl
+//     }
+//   }
+// `;
 
 const LinkInput = () => {
   const classes = useStyles();
@@ -34,41 +45,50 @@ const LinkInput = () => {
   const [slug, setSlug] = useState("");
 
   if (loading) return "Submitting...";
-  if (error) return `Submission error! ${error.message}`;
+  // if (error) return `Submission error! ${error.message}`;
 
   const handleSubmit = () => {
+    console.log(url);
+    console.log(slug);
     addLink({ variables: { url, slug } });
-    // setUrl("");
-    // setSlug("");
+    if (!error) {
+      setUrl("");
+      setSlug("");
+    }
     console.log("submit triggered");
+    console.log(data);
   };
 
-  console.log(url);
-  console.log(slug);
   return (
     <div className={classes.root}>
       <div>
         <TextField
           // error
           id="url"
-          label="Url"
+          label="Make your links shorter"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          helperText="Make your links shorter"
+          helperText="ex. https://example.com"
         />
       </div>
       <div>
         <TextField
           // error
           id="slug"
-          label="Slug"
+          label="Custom slug"
           value={slug}
           onChange={(e) => setSlug(e.target.value)}
-          helperText="Custom slug"
+          helperText="ex. abc123"
         />
       </div>
       <div>
-        <Button onClick={handleSubmit} type="submit">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSubmit}
+          type="submit"
+          size="small"
+        >
           Shorten URL
         </Button>
       </div>

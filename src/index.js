@@ -35,7 +35,7 @@ const useStyles = makeStyles(styles);
 //   .then((result) => console.log(result));
 
 const GET_LINKS = gql`
-  query GetLinks {
+  query {
     links {
       url
       slug

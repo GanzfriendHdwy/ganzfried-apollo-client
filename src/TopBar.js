@@ -58,7 +58,7 @@ const useStyles = makeStyles(({ spacing }) => ({
   },
   btnBox: {
     display: "flex",
-    gap: spacing(2)
+    gap: spacing(1)
   }
 }));
 
@@ -90,10 +90,10 @@ export default function TopBar() {
             track, and share short URLs using a custom domain name
           </Typography>
           <Box className={classes.btnBox}>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" size="small">
               Sign up free
             </Button>
-            <Button variant="outlined" color="primary">
+            <Button variant="outlined" color="primary" size="small">
               Request a demo
             </Button>
           </Box>
