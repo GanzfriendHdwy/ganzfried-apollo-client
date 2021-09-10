@@ -28,16 +28,20 @@ const useStyles = makeStyles(({ spacing, breakpoints }) => ({
   },
   logoBox: {
     backgroundImage: `url(${logo})`,
-    height: "5vh",
-    width: "15vw",
-    backgroundRepeat: "no-repeat"
+    height: "6vh",
+    width: "12vw",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "contain"
   },
   iconsBox: {
     backgroundImage: `url(${icons})`,
     height: "15vh",
     width: "90vw",
     margin: spacing(2),
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundSize: "contain"
   },
   headshotBox: {
     backgroundImage: `url(${headshot})`,
